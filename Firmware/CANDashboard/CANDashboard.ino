@@ -13,11 +13,13 @@ void setup()
 {
   
   //Testing Code:
-  Serial.begin(115200);
+ Serial.begin(115200);
   delay(1000);
 
   Serial.println("CAN Transmitter Starting...");
- 
+
+  SPI.begin(18, 19, 23, 5);  // SCK, MISO, MOSI, CS
+
   if (CAN.begin(MCP_ANY, CAN_500KBPS, MCP_8MHZ) == CAN_OK) {
     Serial.println("MCP2515 initialized successfully!");
   } else {
@@ -26,6 +28,7 @@ void setup()
   }
 
   CAN.setMode(MCP_NORMAL);
+
   Serial.println("CAN Transmitter Ready!");
 //------------------------------------------------------------------------------------
 
@@ -43,6 +46,6 @@ void loop()
     Serial.println("Send failed!");
   }
 
-  delay(1000);
+
 
 }
