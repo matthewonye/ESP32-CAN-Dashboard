@@ -1,33 +1,39 @@
  // ESP32 CAN DASHBOARD By Matthew Onye //
  // Date Started 8/5/26//
 
-#include <SPI.h>
-#include <mcp_can.h>
+#include "driver/twai.h"
 
-#define CAN_CS 5
-
-MCP_CAN CAN(CAN_CS);
+#define CAN_TX GPIO_NUM_21
+#define CAN_RX GPIO_NUM_22
 
 
 void setup() 
 {
   
   //Testing Code:
- Serial.begin(115200);
+  Serial.begin(115200);
   delay(1000);
 
   Serial.println("CAN Transmitter Starting...");
 
-  SPI.begin(18, 19, 23, 5);  // SCK, MISO, MOSI, CS
+  twai_general_config_t g_config =
+      TWAI_GENERAL_CONFIG_DEFAULT(CAN_TX, CAN_RX, TWAI_MODE_NORMAL);
 
-  if (CAN.begin(MCP_ANY, CAN_500KBPS, MCP_8MHZ) == CAN_OK) {
-    Serial.println("MCP2515 initialized successfully!");
-  } else {
-    Serial.println("MCP2515 initialization FAILED!");
-    while (1);
+  twai_timing_config_t t_config =
+      TWAI_TIMING_CONFIG_500KBITS();
+
+  twai_filter_config_t f_config =
+      TWAI_FILTER_CONFIG_ACCEPT_ALL();
+
+  if (twai_driver_install(&g_config, &t_config, &f_config) != ESP_OK) {
+    Serial.println("TWAI driver installation FAILED!");
+    return;
   }
 
-  CAN.setMode(MCP_NORMAL);
+  if (twai_start() != ESP_OK) {
+    Serial.println("TWAI start FAILED!");
+    return;
+    }
 
   Serial.println("CAN Transmitter Ready!");
 //------------------------------------------------------------------------------------
@@ -36,15 +42,23 @@ void setup()
 
 void loop() 
 {
-  byte data[4] = {0x01, 0x02, 0x03, 0x04};
+  twai_message_t message = {};
 
-  byte result = CAN.sendMsgBuf(0x100, 0, 4, data);
+  message.identifier = 0x100;
+  message.data_length_code = 4;
 
-  if (result == CAN_OK) {
-    Serial.println("Message sent!");
+  message.data[0] = 0x01;
+  message.data[1] = 0x02;
+  message.data[2] = 0x03;
+  message.data[3] = 0x04;
+
+  if (twai_transmit(&message, pdMS_TO_TICKS(1000)) == ESP_OK) {
+    Serial.println("CAN message sent!");
   } else {
-    Serial.println("Send failed!");
+    Serial.println("CAN transmission failed!");
   }
+
+  delay(1000);
 
 
 
