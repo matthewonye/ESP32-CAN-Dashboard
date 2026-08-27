@@ -3,15 +3,15 @@
 
 #include "driver/twai.h"
 
-#define CAN_TX GPIO_NUM_21
-#define CAN_RX GPIO_NUM_22
+#define CAN_TX GPIO_NUM_18
+#define CAN_RX GPIO_NUM_5
 
 
 void setup() 
 {
   
   //Testing Code:
-  Serial.begin(115200);
+   Serial.begin(115200);
   delay(1000);
 
   Serial.println("CAN Transmitter Starting...");
@@ -26,14 +26,14 @@ void setup()
       TWAI_FILTER_CONFIG_ACCEPT_ALL();
 
   if (twai_driver_install(&g_config, &t_config, &f_config) != ESP_OK) {
-    Serial.println("TWAI driver installation FAILED!");
+    Serial.println("TWAI driver install FAILED!");
     return;
   }
 
   if (twai_start() != ESP_OK) {
     Serial.println("TWAI start FAILED!");
     return;
-    }
+  }
 
   Serial.println("CAN Transmitter Ready!");
 //------------------------------------------------------------------------------------
@@ -42,7 +42,7 @@ void setup()
 
 void loop() 
 {
-  twai_message_t message = {};
+   twai_message_t message = {};
 
   message.identifier = 0x100;
   message.data_length_code = 4;
@@ -53,13 +53,12 @@ void loop()
   message.data[3] = 0x04;
 
   if (twai_transmit(&message, pdMS_TO_TICKS(1000)) == ESP_OK) {
-    Serial.println("CAN message sent!");
+    Serial.println("Message sent!");
   } else {
-    Serial.println("CAN transmission failed!");
+    Serial.println("Message FAILED!");
   }
 
   delay(1000);
-
 
 
 }
