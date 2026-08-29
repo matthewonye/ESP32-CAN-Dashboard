@@ -6,6 +6,11 @@
 #define CAN_TX GPIO_NUM_18
 #define CAN_RX GPIO_NUM_5
 
+int rpm = 900;
+int speedMPH = 0;
+int coolantTemp = 170;
+bool accelerating = true;
+
 
 void setup() 
 {
@@ -13,8 +18,6 @@ void setup()
   //Testing Code:
    Serial.begin(115200);
   delay(1000);
-
-  Serial.println("CAN Transmitter Starting...");
 
   twai_general_config_t g_config =
       TWAI_GENERAL_CONFIG_DEFAULT(CAN_TX, CAN_RX, TWAI_MODE_NORMAL);
@@ -26,7 +29,7 @@ void setup()
       TWAI_FILTER_CONFIG_ACCEPT_ALL();
 
   if (twai_driver_install(&g_config, &t_config, &f_config) != ESP_OK) {
-    Serial.println("TWAI driver install FAILED!");
+    Serial.println("TWAI install FAILED!");
     return;
   }
 
@@ -35,30 +38,72 @@ void setup()
     return;
   }
 
-  Serial.println("CAN Transmitter Ready!");
-//------------------------------------------------------------------------------------
-
+  Serial.println("Fake Vehicle Ready!");
 }
 
-void loop() 
-{
-   twai_message_t message = {};
+void updateVehicleData() {
 
-  message.identifier = 0x100;
-  message.data_length_code = 4;
+  if (accelerating) {
+    rpm += 200;
+    speedMPH += 2;
 
-  message.data[0] = 0x01;
-  message.data[1] = 0x02;
-  message.data[2] = 0x03;
-  message.data[3] = 0x04;
+    if (rpm >= 4500) {
+      accelerating = false;
+    }
+  }
+  else {
+    rpm -= 250;
+    speedMPH -= 2;
 
-  if (twai_transmit(&message, pdMS_TO_TICKS(1000)) == ESP_OK) {
-    Serial.println("Message sent!");
-  } else {
-    Serial.println("Message FAILED!");
+    if (rpm <= 900) {
+      rpm = 900;
+      speedMPH = 0;
+      accelerating = true;
+    }
   }
 
-  delay(1000);
+  if (speedMPH > 0 && coolantTemp < 195) {
+    coolantTemp++;
+  }
+}
+
+
+
+void sendVehicleData() {
+
+  twai_message_t message = {};
+
+  message.identifier = 0x100;
+  message.data_length_code = 5;
+
+  // RPM needs 2 bytes because it can exceed 255
+  message.data[0] = (rpm >> 8) & 0xFF;
+  message.data[1] = rpm & 0xFF;
+
+  message.data[2] = speedMPH;
+  message.data[3] = coolantTemp;
+
+  // Reserved for future data
+  message.data[4] = 0;
+
+  if (twai_transmit(&message, pdMS_TO_TICKS(100)) == ESP_OK) {
+    Serial.print("Sent | RPM: ");
+    Serial.print(rpm);
+    Serial.print(" Speed: ");
+    Serial.print(speedMPH);
+    Serial.print(" Coolant: ");
+    Serial.println(coolantTemp);
+  }
+  else {
+    Serial.println("CAN transmit FAILED!");
+  }
+}
+void loop() 
+{
+  updateVehicleData();
+  sendVehicleData();
+
+  delay(500);
 
 
 }
