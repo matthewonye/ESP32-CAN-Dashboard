@@ -1,4 +1,4 @@
 (sym_lib_table
 	(version 7)
-	(lib (name "esp32_30pin_revised") (type "KiCad") (uri "C:/Users/matth/Downloads/30pin/esp32_30pin_revised.kicad_sym") (options "") (descr ""))
+	(lib (name "esp32_30pin_revised") (type "KiCad") (uri "C:/Users/Matthew/Desktop/REV/esp32_30pin_revised.kicad_sym") (options "") (descr ""))
 )
