@@ -1211,6 +1211,16 @@
 		)
 		(uuid "58cc9e33-7dc1-4e96-ae22-a60d37f9a75d")
 	)
+	(label "5.5V"
+		(at 104.14 48.26 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "6ca4a08c-d16b-4c2d-8046-16c327cdd07d")
+	)
 	(label "VIN_5v"
 		(at 73.66 99.06 0)
 		(effects
