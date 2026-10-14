@@ -17,7 +17,7 @@ A custom PCB was designed in KiCad to integrate the dashboard ESP32, CAN interfa
 
 * SN65HVD230 CAN transceiver modules
 
-* SSD1306 128×64 I²C OLED display
+* SSD1306 128×64 OLED display
 
 * MP1584EN adjustable buck converter module (for PCB assembly)
 
@@ -46,7 +46,7 @@ A custom PCB was designed in KiCad to integrate the dashboard ESP32, CAN interfa
 * Simulation      |     MATLAB/Simulink
 
 
-* Interfaces     |      I²C, OLED
+* Interfaces     |       OLED
 
 
 * Debugging       |     Serial Monitor, Multimeter
@@ -86,4 +86,18 @@ where RPM is encoded as a 16-bit value and reconstructed by the receiver using b
 
 # [MATLAB/Simulink](https://github.com/matthewonye/ESP32-CAN-Dashboard/tree/main/PCB/KiCAD/CAN_Dashboard_PCB)
 
+Developed a Simulink model to simulate vehicle signals and demonstrate CAN payload encoding and decoding.
+
+The model includes:
+
+* Simulated RPM, speed, and coolant temperature signals
+* Signal saturation and data-type conversion
+* High-byte/low-byte encoding
+* Byte-level payload construction
+* Decoding and reconstruction of transmitted values
+
+
+The Simulink model validates the data processing logic; physical CAN communication is handled by the ESP32 hardware and firmware.
+
+# [Custom PCB Design](
 
