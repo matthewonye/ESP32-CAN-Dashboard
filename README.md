@@ -84,7 +84,7 @@ Byte/Data
 
 where RPM is encoded as a 16-bit value and reconstructed by the receiver using bitwise operations.
 
-# [MATLAB/Simulink]((https://github.com/matthewonye/ESP32-CAN-Dashboard/tree/main/Simulink)
+# [MATLAB/Simulink](https://github.com/matthewonye/ESP32-CAN-Dashboard/tree/main/Simulink)
 
 Developed a Simulink model to simulate vehicle signals and demonstrate CAN payload encoding and decoding.
 
@@ -99,5 +99,28 @@ The model includes:
 
 The Simulink model validates the data processing logic; physical CAN communication is handled by the ESP32 hardware and firmware.
 
-# [Custom PCB Design](https://github.com/matthewonye/ESP32-CAN-Dashboard/tree/main/PCB/KiCAD/CAN_Dashboard_PCB
+# [Custom PCB Design](https://github.com/matthewonye/ESP32-CAN-Dashboard/tree/main/PCB/KiCAD/CAN_Dashboard_PCB)
+
+Designed a multi layer PCB in KiCad to integrate the dashboard hardware into a single assembly.
+
+PCB features:
+* ESP32 DevKit footprint
+
+* SN65HVD230 module interface
+
+* OLED connector
+
+* External CANH/CANL/GND connector
+
+* Buck-converter power section
+
+* Switchable 120 Ω CAN termination
+
+* Power indicator LED
+
+* Signal and power test points
+
+* Ground copper plane
+
+* ESP32 antenna copper keepout
 
