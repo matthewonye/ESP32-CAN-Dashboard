@@ -30,7 +30,7 @@ A custom PCB was designed in KiCad to integrate the dashboard ESP32, CAN interfa
 
 # Tech/Tools Used:
 
-Category                Technologies
+Category                  |  Technologies
 
 
 * Programming      |     C/C++, Arduino IDE
