@@ -84,6 +84,6 @@ Byte/Data
 
 where RPM is encoded as a 16-bit value and reconstructed by the receiver using bitwise operations.
 
-# [MATLAB/Simulink](
+# [MATLAB/Simulink](https://github.com/matthewonye/ESP32-CAN-Dashboard/tree/main/PCB/KiCAD/CAN_Dashboard_PCB)
 
 
