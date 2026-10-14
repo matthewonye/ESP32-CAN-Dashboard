@@ -148,7 +148,7 @@ PCB features:
 # Author
 Matthew Onye
 
-Computer Engineering — University of Michigan–Dearborn
+Computer Engineering | University of Michigan–Dearborn
 
 [LinkedIn](https://www.linkedin.com/in/matthew-onye-9a4964316/?isSelfProfile=true)
 
