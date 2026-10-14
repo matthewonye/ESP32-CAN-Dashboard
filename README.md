@@ -9,3 +9,20 @@ The system uses two ESP32 microcontrollers connected through SN65HVD230 CAN tran
 * Transmitter (Simulated Vehicle): Generates vehicle data, including engine RPM, speed, and coolant temperature, and transmits it over CAN.
 
 * Receiver (Dashboard): Receives and decodes CAN messages and displays the vehicle data on a 128×64 OLED screen.
+
+A custom PCB was designed in KiCad to integrate the dashboard ESP32, CAN interface, OLED connections, power regulation, and external CAN connections.
+
+# Hardware Components
+* 2 ESP32-WROOM-32 development boards (bench testing)
+
+* SN65HVD230 CAN transceiver modules
+
+* SSD1306 128×64 I²C OLED display
+
+* MP1584EN adjustable buck converter module (for PCB assembly)
+
+* Custom designed PCB
+
+* 120 Ω CAN termination resistor and jumper
+
+* Screw terminals, headers, and supporting passive components
