@@ -30,8 +30,6 @@ A custom PCB was designed in KiCad to integrate the dashboard ESP32, CAN interfa
 
 # Tech/Tools Used:
 
-Category                  |  Technologies
-
 
 * Programming      |     C/C++, Arduino IDE
 
@@ -52,5 +50,40 @@ Category                  |  Technologies
 
 
 * Debugging       |     Serial Monitor, Multimeter
+
+
+# System Architecture
+
+Simulated Vehicle ESP32 → SN65HVD230 → CAN Bus → SN65HVD230 → Dashboard ESP32 → OLED Display
+
+The transmitter generates simulated vehicle signals and packages them into CAN messages. The receiver reconstructs the transmitted values and updates the OLED display.
+
+# CAN Communication
+
+The system uses the ESP32's built-in TWAI controller with external SN65HVD230 transceivers.
+
+
+CAN Configuration
+
+* Bit rate: 500 kbps
+* CAN message ID: 0x100
+* Payload length: 5 bytes
+
+
+Byte/Data
+
+* 0 | RPM High
+
+* 1 | RPM Low
+
+* 2 | Vehicle Speed
+
+* 3 | Coolant Temp
+
+* 4 | Reserved
+
+where RPM is encoded as a 16-bit value and reconstructed by the receiver using bitwise operations.
+
+# [MATLAB/Simulink](
 
 
