@@ -33,24 +33,24 @@ A custom PCB was designed in KiCad to integrate the dashboard ESP32, CAN interfa
 Category                Technologies
 
 
-* Programming           C/C++, Arduino IDE
+* Programming      |     C/C++, Arduino IDE
 
 
-* Microcontrollers      ESP32
+* Microcontrollers   |   ESP32
 
 
-* Communication         CAN Bus, ESP32 TWAI
+* Communication     |    CAN Bus, ESP32 TWAI
 
 
-* PCB Design            KiCad
+* PCB Design      |      KiCad
 
 
-* Simulation           MATLAB/Simulink
+* Simulation      |     MATLAB/Simulink
 
 
-* Interfaces           I²C, OLED
+* Interfaces     |      I²C, OLED
 
 
-* Debugging            Serial Monitor, Multimeter
+* Debugging       |     Serial Monitor, Multimeter
 
 
