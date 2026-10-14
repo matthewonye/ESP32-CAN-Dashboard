@@ -124,3 +124,31 @@ PCB features:
 
 * ESP32 antenna copper keepout
 
+# Testing and Validation
+* Established CAN communication between two ESP32 development boards
+
+* Verified message transmission and reception
+
+* Decoded vehicle data and displayed it on the OLED
+
+* Validated signal encoding and decoding in MATLAB/Simulink
+
+* Completed KiCad electrical and PCB design-rule checks
+
+
+# Future Additions 
+* Integrate an Assembly routine for low-level data processing
+
+* Add vehicle-data logging capabilities
+
+* Expand dashboard visualization
+
+* Evaluate a protected, listen-only interface for real vehicle CAN networks
+
+# Author
+Matthew Onye
+
+Computer Engineering — University of Michigan–Dearborn
+
+[LinkedIn](https://www.linkedin.com/in/matthew-onye-9a4964316/?isSelfProfile=true)
+
