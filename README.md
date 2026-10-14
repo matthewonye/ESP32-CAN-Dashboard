@@ -26,3 +26,31 @@ A custom PCB was designed in KiCad to integrate the dashboard ESP32, CAN interfa
 * 120 Ω CAN termination resistor and jumper
 
 * Screw terminals, headers, and supporting passive components
+
+
+# Tech/Tools Used:
+
+Category                Technologies
+
+
+* Programming           C/C++, Arduino IDE
+
+
+* Microcontrollers      ESP32
+
+
+* Communication         CAN Bus, ESP32 TWAI
+
+
+* PCB Design            KiCad
+
+
+* Simulation           MATLAB/Simulink
+
+
+* Interfaces           I²C, OLED
+
+
+* Debugging            Serial Monitor, Multimeter
+
+
